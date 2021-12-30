@@ -8,9 +8,10 @@ import { UserService } from 'src/app/services/user-service.service';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent {
+export class UserFormComponent implements OnInit {
 
   user: User;
+  id!: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,8 +21,21 @@ export class UserFormComponent {
     this.user = new User();
   }
 
+  ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      this.userService.findById(this.id).subscribe(
+        user => this.user = user
+      );
+    }
+  }
+
   onSubmit() {
-    this.userService.save(this.user).subscribe(result => this.gotoUserList());
+    if(this.id) {
+      this.userService.update(this.user).subscribe(result => this.gotoUserList());
+    } else {
+      this.userService.save(this.user).subscribe(result => this.gotoUserList());
+    }
   }
 
   gotoUserList() {
