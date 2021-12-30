@@ -14,10 +14,21 @@ export class UserListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
     this.userService.findAll().subscribe(data => {
       console.log(data);
       this.users = data;
     });
   }
 
+  deleteUser(user: User) {
+    if (confirm("Are you sure you want to delete this user?")) {
+      this.userService.delete(user.id).subscribe(() => {
+        this.fetchUsers();
+      });
+    }
+  }
 }
