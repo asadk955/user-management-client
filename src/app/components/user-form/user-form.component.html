@@ -48,26 +48,28 @@
                       <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
                       <input
                         type="text"
-                        [(ngModel)]="user.fname"
+                        [(ngModel)]="user.firstName"
                         #name="ngModel"
                         name="first-name"
                         id="first-name"
                         autocomplete="first-name"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       >
+                      <span *ngIf="getError('fname')" class="text-red-600 text-sm py-2">{{ getError('fname') }}</span>
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
                       <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
                       <input
                         type="text"
-                        [(ngModel)]="user.lname"
+                        [(ngModel)]="user.lastName"
                         #name="ngModel"
                         name="last-name"
                         id="last-name"
                         autocomplete="last-name"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       >
+                      <span *ngIf="getError('lname')" class="text-red-600 text-sm py-2">{{ getError('lname') }}</span>
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
@@ -81,6 +83,7 @@
                         autocomplete="dob"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       >
+                      <span *ngIf="getError('dob')" class="text-red-600 text-sm py-2">{{ getError('dob') }}</span>
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
@@ -97,6 +100,7 @@
                         <option>Nagpur</option>
                         <option>Hyderabad</option>
                       </select>
+                      <span *ngIf="getError('city')" class="text-red-600 text-sm py-2">{{ getError('city') }}</span>
                     </div>
 
                     <div class="col-span-6">
@@ -110,6 +114,7 @@
                         autocomplete="phone"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       >
+                      <span *ngIf="getError('phone')" class="text-red-600 text-sm py-2">{{ getError('phone') }}</span>
                     </div>
 
                   </div>
